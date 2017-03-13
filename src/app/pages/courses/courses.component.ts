@@ -35,11 +35,14 @@ export class CoursesComponent implements OnInit, OnDestroy {
 	public ngOnDestroy() {
 	}
 
-	public submitState(value: string) {
-		console.log('submitState', value);
+	public findCourse(value: string) {
+		console.log('CoursesComponent.findCourse: ', value);
 		this.localState.value = '';
 	}
 	public addCourse() {
-		console.log('addCourse');
+		console.log('CoursesComponent.addCourse');
+	}
+	public deleteCourse($event) {
+		console.log('CoursesComponent.deleteCourse: ', $event);
 	}
 }

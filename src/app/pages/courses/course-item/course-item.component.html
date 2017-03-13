@@ -3,8 +3,12 @@
 		<div>{{course.title}}:{{course.duration}} {{course.creationDate}}</div>
 		<div>{{course.description}}</div>
 	</div>
-	<div class="menu">
-		<div class="menu-item" [routerLink]="'course-detail'" routerLinkActive="active">Edit course</div>
-		<div class="menu-item" [routerLink]="'course-delete'" routerLinkActive="active">Delete</div>
-	</div>
+
+	<span class="input-group-btn">
+		<button class="btn btn-primary" type="button" (click)="editItem();">Edit course</button>
+	</span>	
+	
+	<span class="input-group-btn">
+		<button class="btn btn-primary" type="button" (click)="deleteItem();">Delete</button>
+	</span>	
 </div>

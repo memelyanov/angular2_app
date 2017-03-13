@@ -1,0 +1,29 @@
+@import "../../../styles/variables/colors.scss";
+
+.main-footer {
+	background-color: $c-primary;
+	color: $white;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 50px;
+}
+
+.data {
+	background-color: cadetblue;
+	color: yellow;
+}
+
+.menu {
+	float: right;
+	font-size: 0.8rem;
+	padding-top: 20px;
+
+	.menu-item {
+		text-transform: uppercase;
+		border: solid 1px black;
+		padding: 0 15px;
+		cursor: pointer;
+	}
+}

@@ -1,0 +1,23 @@
+<div class="courses">
+	<div>
+	<h4>Courses:</h4>
+
+    <form (ngSubmit)="submitState(localState.value)" autocomplete="off">
+      <input
+        [value]="localState.value"
+        (input)="localState.value = $event.target.value"
+        placeholder="Submit Local State to App State"
+        autofocus>
+
+      <button>Find</button>
+    </form>
+
+    <form (ngSubmit)="addCourse()" autocomplete="off">
+      <button>Add course</button>
+    </form>
+	</div>
+	<div class="course-list">
+		<course-item *ngFor="let course of courseList" [course]="course"></course-item>
+	</div>
+	<div *ngIf="isLoading">Is loading...</div>
+</div>

@@ -10,7 +10,7 @@ import { CourseItem } from '../../../core/entities';
 })
 export class CourseItemComponent {
 	@Input() public course: CourseItem;
-	@Output('change') public courseDelete = new EventEmitter();
+	@Output('change') public change = new EventEmitter();
 
 	constructor() {
 	}
@@ -21,7 +21,7 @@ export class CourseItemComponent {
 
 	public deleteItem() {
 		console.log('CourseItemComponent.deleteItem');
-		this.courseDelete.emit({
+		this.change.emit({
 			value: this.course.id
 		});
 	}

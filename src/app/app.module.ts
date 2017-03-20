@@ -33,10 +33,12 @@ import { СourseDetailModule } from  './pages/course-detail';
 
 // Services
 import { CourseService } from './core/services';
+import { LoginService } from './core/services';
 
 // Application wide providers
 const APP_PROVIDERS = [
-	CourseService
+	CourseService,
+	LoginService
 ];
 
 /**

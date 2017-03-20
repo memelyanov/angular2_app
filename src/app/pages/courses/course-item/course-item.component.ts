@@ -22,6 +22,7 @@ export class CourseItemComponent {
 	public deleteItem() {
 		console.log('CourseItemComponent.deleteItem');
 		this.change.emit({
+			action: 'delete',
 			value: this.course.id
 		});
 	}

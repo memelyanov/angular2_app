@@ -2,8 +2,8 @@
 	<div>
 	<h4>Courses:</h4>
 
-    <form (ngSubmit)="findCourse(localState.value)" autocomplete="off">
-      <input type="text" name="textInput" [(ngModel)]="localState.value" 
+    <form (ngSubmit)="findCourse(localCourse.value)" autocomplete="off">
+      <input type="text" name="textInput" [(ngModel)]="localCourse.value" 
         placeholder="Submit course name" autofocus>
       <button>Find</button>
     </form>

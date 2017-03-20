@@ -32,9 +32,11 @@ import { LoginModule } from  './pages/login';
 import { СourseDetailModule } from  './pages/course-detail';
 
 // Services
+import { CourseService } from './core/services';
 
 // Application wide providers
 const APP_PROVIDERS = [
+	CourseService
 ];
 
 /**

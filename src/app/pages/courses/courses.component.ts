@@ -1,6 +1,7 @@
 import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
+import { CourseService } from '../../core/services';
 import { CourseItem } from '../../core/entities';
 
 @Component({
@@ -12,12 +13,12 @@ import { CourseItem } from '../../core/entities';
 })
 export class CoursesComponent implements OnInit, OnDestroy {
 	// Set our default values
-	public localState = { value: '' };
-
+	public localCourse  = { value: '' };
+	private courseServiceSubscription: Subscription;
 	private courseList: CourseItem[];
 	private isLoading: boolean = false;
 
-	constructor() {
+	constructor(private courseService: CourseService) {
 		console.log('Courses page constructor');
 
 		this.courseList = [];
@@ -27,8 +28,7 @@ export class CoursesComponent implements OnInit, OnDestroy {
 		console.log('Courses page init');
 
 		this.isLoading = true;
-		this.courseList[0] = new CourseItem(1, 'title 1', new Date('01/01/2012'), 100, 'description 1');
-		this.courseList[1] = new CourseItem(2, 'title 2', new Date('01/01/2012'), 100, 'description 2');
+		this.courseList = this.courseService.getItems();
 		this.isLoading = false;
 	}
 
@@ -37,12 +37,18 @@ export class CoursesComponent implements OnInit, OnDestroy {
 
 	public findCourse(value: string) {
 		console.log('CoursesComponent.findCourse: ', value);
-		this.localState.value = '';
+		let course = this.courseService.getItem(value);
+		console.log('Found: ', course);
 	}
 	public addCourse() {
 		console.log('CoursesComponent.addCourse');
+		this.courseService.createCourse();
 	}
 	public deleteCourse($event) {
 		console.log('CoursesComponent.deleteCourse: ', $event);
+		let isDelete = confirm('Вы действительно хотите удалить курс ?');
+		if (isDelete) {
+			this.courseService.removeItem($event.value);
+		}
 	}
 }

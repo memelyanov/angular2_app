@@ -1,3 +1,22 @@
 <div class="login">
-	Login
+	<form (ngSubmit)="doLogin(user, password)" autocomplete="off">
+		<div *ngIf="!this.loginService.isAuth()">
+			<div>
+				Login: <input type="text" name="textInput" [(ngModel)]="user" placeholder="Submit user name" autofocus>
+			</div>
+			<div>
+				Password: <input type="password" name="textInput" [(ngModel)]="password" placeholder="Submit user password" autofocus>
+			</div>
+			<div>
+				<button>Login</button>
+			</div>
+		</div>
+    </form>
+	<form (ngSubmit)="doLogout()" autocomplete="off">
+		<div *ngIf="this.loginService.isAuth()">
+			<div>
+				<button>Logout</button>
+			</div>
+		</div>
+    </form>
 </div>

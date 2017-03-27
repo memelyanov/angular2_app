@@ -52,11 +52,13 @@ export class CoursesComponent implements OnInit, OnDestroy {
 		let course = this.courseService.getItem(value);
 		console.log('Found: ', course);
 	}
+
 	public addCourse() {
 		console.log('CoursesComponent.addCourse');
 		this.courseService.createCourse();
 		this.changeDetectorRef.markForCheck();
 	}
+
 	public deleteCourse($event) {
 		console.log('CoursesComponent.deleteCourse: ', $event);
 		let isDelete = confirm('Вы действительно хотите удалить курс ?');

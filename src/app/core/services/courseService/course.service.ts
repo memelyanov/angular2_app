@@ -23,9 +23,8 @@ export class CourseService {
 
 		this.myObservable = new Observable(
 			(observer) => {
-				setTimeout(() => { observer.next(this.courseList); }, 3000);
-				// setTimeout(() => { observer.next(this.courseList); }, 1000);
-				setTimeout(() => { observer.complete(); }, 5000);
+				setTimeout(() => { observer.next(this.courseList); }, 1000);
+				setTimeout(() => { observer.complete(); }, 3000);
 			}
 		);
 		return this.myObservable;
@@ -45,7 +44,7 @@ export class CourseService {
 		this.courseList.push(new CourseItem(newId,
 											'title ' + newId,
 											new Date(),
-											100,
+											newId + 1,
 											'description ' + newId));
 	}
 

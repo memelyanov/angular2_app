@@ -27,12 +27,12 @@ export class AppComponent implements OnInit {
 	constructor(
 		private ngZone: NgZone
 	) {
-		this.ngZone.onStable.subscribe(this.onZoneStable);
-		this.ngZone.onUnstable.subscribe(this.onZoneUnstable);
-		this.ngZone.onError.subscribe(this.onZoneError);
 	}
 
 	public ngOnInit() {
+		this.ngZone.onStable.subscribe(this.onZoneStable);
+		this.ngZone.onUnstable.subscribe(this.onZoneUnstable);
+		this.ngZone.onError.subscribe(this.onZoneError);
 	}
 
 	public onZoneStable() {

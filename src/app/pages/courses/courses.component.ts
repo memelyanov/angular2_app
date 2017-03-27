@@ -28,8 +28,12 @@ export class CoursesComponent implements OnInit, OnDestroy {
 		console.log('Courses page init');
 
 		this.isLoading = true;
-		this.courseList = this.courseService.getItems();
-		this.isLoading = false;
+
+		this.courseServiceSubscription =
+			this.courseService.getObsItems().subscribe((res: CourseItem[]) => {
+				this.courseList = res;
+				this.isLoading = false;
+			});
 	}
 
 	public ngOnDestroy() {

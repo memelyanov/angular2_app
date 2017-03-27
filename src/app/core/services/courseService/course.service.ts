@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Response, Request, RequestOptions, RequestMethod, Http } from '@angular/http';
 
 import { CourseItem } from '../../entities';
 
@@ -7,12 +9,26 @@ export class CourseService {
 
 	private courseList: CourseItem[];
 	private count: number = 0;
+	private myObservable: Observable<CourseItem[]>;
 
 	constructor() {
 		this.courseList = [];
 		for (let i = 0; i < 3; i++) {
 			this.createCourse ();
 		}
+	}
+
+	public getObsItems (): Observable<CourseItem[]> {
+		console.log('CourseService.getObsItems()');
+
+		this.myObservable = new Observable(
+			(observer) => {
+				setTimeout(() => { observer.next(this.courseList); }, 3000);
+				// setTimeout(() => { observer.next(this.courseList); }, 1000);
+				setTimeout(() => { observer.complete(); }, 5000);
+			}
+		);
+		return this.myObservable;
 	}
 
 	public getItems (): CourseItem[] {
@@ -28,7 +44,7 @@ export class CourseService {
 
 		this.courseList.push(new CourseItem(newId,
 											'title ' + newId,
-											new Date('01/01/2012'),
+											new Date(),
 											100,
 											'description ' + newId));
 	}

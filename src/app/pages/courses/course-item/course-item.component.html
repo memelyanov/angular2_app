@@ -1,14 +1,12 @@
 <div class="course-item row">
 	<div class="data">
-		<div>{{course.title}}:{{course.duration}} {{course.creationDate}}</div>
+		<div>"{{course.title}}" {{course.duration}} min</div>
+		<div>{{course.creationDate}}</div>
 		<div>{{course.description}}</div>
 	</div>
 
-	<span class="input-group-btn">
-		<button class="btn btn-primary" type="button" (click)="editItem();">Edit course</button>
-	</span>	
-	
-	<span class="input-group-btn">
-		<button class="btn btn-primary" type="button" (click)="deleteItem();">Delete</button>
+	<span>
+		<button class="btn btn-secondary" type="button" (click)="editItem();">Edit course</button>
+		<button class="btn btn-danger" type="button" (click)="deleteItem();">Delete</button>
 	</span>	
 </div>

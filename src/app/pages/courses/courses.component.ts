@@ -1,4 +1,5 @@
-import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
+import { Component, NgZone, ViewEncapsulation, OnInit, OnDestroy,
+		ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { CourseService } from '../../core/services';
@@ -7,6 +8,7 @@ import { CourseItem } from '../../core/entities';
 @Component({
 	selector: 'courses',
 	encapsulation: ViewEncapsulation.None,
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	providers: [],
 	styles: [require('./courses.styles.scss')],
 	template: require('./courses.template.html')
@@ -18,7 +20,10 @@ export class CoursesComponent implements OnInit, OnDestroy {
 	private courseList: CourseItem[];
 	private isLoading: boolean = false;
 
-	constructor(private courseService: CourseService) {
+	constructor(
+		private courseService: CourseService,
+		private changeDetectorRef: ChangeDetectorRef
+		) {
 		console.log('Courses page constructor');
 
 		this.courseList = [];
@@ -33,6 +38,9 @@ export class CoursesComponent implements OnInit, OnDestroy {
 			this.courseService.getObsItems().subscribe((res: CourseItem[]) => {
 				this.courseList = res;
 				this.isLoading = false;
+				console.log('Courses loaded');
+				// required to repaint list with onpush
+				this.changeDetectorRef.markForCheck();
 			});
 	}
 
@@ -47,14 +55,18 @@ export class CoursesComponent implements OnInit, OnDestroy {
 	public addCourse() {
 		console.log('CoursesComponent.addCourse');
 		this.courseService.createCourse();
-		this.courseList = this.courseService.getItems();
+		this.changeDetectorRef.markForCheck();
 	}
 	public deleteCourse($event) {
 		console.log('CoursesComponent.deleteCourse: ', $event);
 		let isDelete = confirm('Вы действительно хотите удалить курс ?');
 		if (isDelete) {
 			this.courseService.removeItem($event.value);
-			this.courseList = this.courseService.getItems();
+			// this.changeDetectorRef.markForCheck();
 		}
+	}
+
+	public lastChanged(): Date {
+		return new Date();
 	}
 }

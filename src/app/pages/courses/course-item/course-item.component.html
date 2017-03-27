@@ -3,6 +3,7 @@
 		<div>"{{course.title}}" {{course.duration}} min</div>
 		<div>{{course.creationDate | date:'dd.MM.yyyy HH:mm:ss (Z)'}}</div>
 		<div>{{course.description}}</div>
+		<div><i>{{course.lastChanged() | date:'HH:mm:ss'}}</i></div>
 	</div>
 
 	<span>

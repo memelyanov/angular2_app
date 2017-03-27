@@ -14,4 +14,8 @@ export class CourseItem implements ICourseItem {
 		public duration: number,
 		public description: string) {
 	}
+
+	public lastChanged(): Date {
+		return new Date();
+	}
 }

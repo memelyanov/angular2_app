@@ -1,4 +1,6 @@
-import { Component, ViewEncapsulation, Input, Output, EventEmitter } from '@angular/core';
+import { Component, ViewEncapsulation,
+		Input, Output, EventEmitter,
+		ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { CourseItem } from '../../../core/entities';
 
 @Component({
@@ -6,17 +8,22 @@ import { CourseItem } from '../../../core/entities';
 	templateUrl: 'course-item.component.html',
 	styles: [require('./course-item.component.scss')],
 	providers: [],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	encapsulation: ViewEncapsulation.None
 })
 export class CourseItemComponent {
 	@Input() public course: CourseItem;
 	@Output('change') public change = new EventEmitter();
 
-	constructor() {
+	constructor(
+		private changeDetectorRef: ChangeDetectorRef
+	) {
 	}
 
 	public editItem() {
 		console.log('CourseItemComponent.editItem');
+		this.course.creationDate = new Date();
+		// this.changeDetectorRef.markForCheck();
 	}
 
 	public deleteItem() {

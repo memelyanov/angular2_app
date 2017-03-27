@@ -1,6 +1,7 @@
 <div class="courses">
 	<div>
 	<h4>Courses:</h4>
+	<div><i>{{lastChanged() | date:'HH:mm:ss'}}</i></div>
     <form autocomplete="off">
       <input type="text" name="textInput" [(ngModel)]="localCourse.value" placeholder="Submit course name" autofocus>
       <button class="btn btn-secondary" type="button" (click)="findCourse(localCourse.value);">Find</button>

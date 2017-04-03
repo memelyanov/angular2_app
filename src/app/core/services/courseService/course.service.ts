@@ -54,8 +54,8 @@ export class CourseService {
 		this.courseList.push(new CourseItem(newId,
 											'title ' + newId,
 											cDate,
-											newId + 1,
-											'description ' + newId,
+											newId * 10 + 41,
+											'This training is about Angular 2 directives and pipes. It covers pipes purpose, build-in pipes usage and custom pipes creation. Participants will know about built in directives and how to write custom directives.',
 											top));
 	}
 

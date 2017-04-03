@@ -6,6 +6,7 @@ import { CourseItem } from '../../entities';
 
 @Injectable()
 export class CourseService {
+	public dayMilliSec: number = 24 * 60 * 60 * 1000;
 
 	private courseList: CourseItem[];
 	private count: number = 0;
@@ -13,9 +14,14 @@ export class CourseService {
 
 	constructor() {
 		this.courseList = [];
-		for (let i = 0; i < 3; i++) {
-			this.createCourse ();
-		}
+		// Now
+		this.createCourse ();
+		// Old
+		let cD: number = new Date().getTime() - 20 * this.dayMilliSec;
+		this.createCourse (new Date(cD));
+		// Future
+		cD = new Date().getTime() + 10 * this.dayMilliSec;
+		this.createCourse (new Date(cD));
 	}
 
 	public getObsItems (): Observable<CourseItem[]> {
@@ -36,14 +42,18 @@ export class CourseService {
 		return this.courseList;
 	}
 
-	public createCourse () {
+	public createCourse (cDate: Date = null) {
 		let newId = this.count++;
+
+		if (cDate === null) {
+			cDate = new Date();
+		}
 
 		console.log('CourseService.createCourse() : ', newId);
 
 		this.courseList.push(new CourseItem(newId,
 											'title ' + newId,
-											new Date(),
+											cDate,
 											newId + 1,
 											'description ' + newId));
 	}

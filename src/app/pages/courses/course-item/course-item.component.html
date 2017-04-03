@@ -1,4 +1,4 @@
-<div class="course-item row">
+<div class="course-item row" courseHighlight [highlightDate]="course.creationDate">
 	<div class="data">
 		<div>"{{course.title}}" {{course.duration}} min</div>
 		<div>{{course.creationDate | date:'dd.MM.yyyy HH:mm:ss (Z)'}}</div>

@@ -8,18 +8,18 @@ import { routes } from './courses.routes';
 
 // custom components
 import { CoursesComponent } from './courses.component';
-import { CourseItemComponent } from './course-item/course-item.component';
+import { CourseItemModule } from './course-item/course-item.module';
 
 @NgModule({
 	declarations: [
-		CoursesComponent,
-		CourseItemComponent
+		CoursesComponent
 	],
 	imports: [
 		routes,
 		FormsModule,
 		ReactiveFormsModule,
-		CommonModule
+		CommonModule,
+		CourseItemModule
 	],
 	providers: []
 })

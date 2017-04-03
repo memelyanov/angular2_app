@@ -71,4 +71,8 @@ export class CoursesComponent implements OnInit, OnDestroy {
 	public lastChanged(): Date {
 		return new Date();
 	}
+
+	public isEmptyList(): Boolean {
+		return (!this.isLoading && this.courseList.length === 0);
+	}
 }

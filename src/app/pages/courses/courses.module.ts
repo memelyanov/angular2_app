@@ -9,10 +9,12 @@ import { routes } from './courses.routes';
 // custom components
 import { CoursesComponent } from './courses.component';
 import { CourseItemModule } from './course-item/course-item.module';
+import { OrderBy } from './course.orderby.pipe';
 
 @NgModule({
 	declarations: [
-		CoursesComponent
+		CoursesComponent,
+		OrderBy
 	],
 	imports: [
 		routes,

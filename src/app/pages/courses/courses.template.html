@@ -9,7 +9,7 @@
     </form>
 	</div>
 	<div class="course-list">
-		<course-item *ngFor="let course of courseList" [course]="course" (change)="deleteCourse($event);"></course-item>
+		<course-item *ngFor="let course of courseList | myOrderBy" [course]="course" (change)="deleteCourse($event);"></course-item>
 	</div>
 	<div *ngIf="isLoading"  class="loader">Is loading...</div>
 	<div *ngIf="isEmptyList()">No data. Feel free to add new course.</div>

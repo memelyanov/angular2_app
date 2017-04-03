@@ -1,6 +1,6 @@
 <div class="course-item row" courseHighlight [highlightDate]="course.creationDate">
 	<div class="data">
-		<div>"{{course.title}}" {{course.duration}} min</div>
+		<div>{{course.title}} | {{course.duration}} min <span  *ngIf="course.topRated" [ngStyle]="{'background-color':'orange', color:'white'}">☼</span></div>
 		<div>{{course.creationDate | date:'dd.MM.yyyy HH:mm:ss (Z)'}}</div>
 		<div>{{course.description}}</div>
 		<div><i>{{course.lastChanged() | date:'HH:mm:ss'}}</i></div>

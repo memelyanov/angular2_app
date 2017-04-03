@@ -18,10 +18,10 @@ export class CourseService {
 		this.createCourse ();
 		// Old
 		let cD: number = new Date().getTime() - 20 * this.dayMilliSec;
-		this.createCourse (new Date(cD));
+		this.createCourse (new Date(cD), true);
 		// Future
 		cD = new Date().getTime() + 10 * this.dayMilliSec;
-		this.createCourse (new Date(cD));
+		this.createCourse (new Date(cD), true);
 	}
 
 	public getObsItems (): Observable<CourseItem[]> {
@@ -42,7 +42,7 @@ export class CourseService {
 		return this.courseList;
 	}
 
-	public createCourse (cDate: Date = null) {
+	public createCourse (cDate: Date = null, top: boolean = false) {
 		let newId = this.count++;
 
 		if (cDate === null) {
@@ -55,7 +55,8 @@ export class CourseService {
 											'title ' + newId,
 											cDate,
 											newId + 1,
-											'description ' + newId));
+											'description ' + newId,
+											top));
 	}
 
 	public getItem (title): CourseItem {

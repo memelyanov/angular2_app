@@ -5,6 +5,7 @@
     <form autocomplete="off">
       <input type="text" name="textInput" [(ngModel)]="localCourse.value" placeholder="Submit course name" autofocus>
       <button class="btn btn-secondary" type="button" (click)="findCourse(localCourse.value);">Find</button>
+      <button class="btn btn-secondary" type="button" (click)="filterCourse(localCourse.value);">Filter</button>
       <button class="btn btn-secondary" type="button" (click)="addCourse();">Add course</button>
     </form>
 	</div>

@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 
 import { CourseService } from '../../core/services';
 import { CourseItem } from '../../core/entities';
+import { FilterCourseItem } from './course.filter.pipe';
 
 @Component({
 	selector: 'courses',
@@ -22,7 +23,8 @@ export class CoursesComponent implements OnInit, OnDestroy {
 
 	constructor(
 		private courseService: CourseService,
-		private changeDetectorRef: ChangeDetectorRef
+		private changeDetectorRef: ChangeDetectorRef,
+		private filterCourseItem: FilterCourseItem
 		) {
 		console.log('Courses page constructor');
 
@@ -53,6 +55,11 @@ export class CoursesComponent implements OnInit, OnDestroy {
 		console.log('Found: ', course);
 	}
 
+	public filterCourse(value: string) {
+		console.log('CoursesComponent.filterCourse: ', value);
+		this.courseList = this.filterCourseItem.transform(this.courseService.getItems(), value);
+	}
+
 	public addCourse() {
 		console.log('CoursesComponent.addCourse');
 		this.courseService.createCourse();
@@ -64,6 +71,7 @@ export class CoursesComponent implements OnInit, OnDestroy {
 		let isDelete = confirm('Вы действительно хотите удалить курс ?');
 		if (isDelete) {
 			this.courseService.removeItem($event.value);
+			this.courseList = this.courseService.getItems();
 			// this.changeDetectorRef.markForCheck();
 		}
 	}

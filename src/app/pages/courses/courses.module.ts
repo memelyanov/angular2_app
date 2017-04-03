@@ -10,11 +10,13 @@ import { routes } from './courses.routes';
 import { CoursesComponent } from './courses.component';
 import { CourseItemModule } from './course-item/course-item.module';
 import { OrderBy } from './course.orderby.pipe';
+import { FilterCourseItem } from './course.filter.pipe';
 
 @NgModule({
 	declarations: [
 		CoursesComponent,
-		OrderBy
+		OrderBy,
+		FilterCourseItem
 	],
 	imports: [
 		routes,
@@ -23,7 +25,9 @@ import { OrderBy } from './course.orderby.pipe';
 		CommonModule,
 		CourseItemModule
 	],
-	providers: []
+	providers: [
+		FilterCourseItem
+	]
 })
 export class CoursesModule {
 	constructor() {
